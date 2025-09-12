@@ -1,17 +1,9 @@
 group = "io.flutterfastkit.fk_user_agent"
 version = "2.1.2"
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath "com.android.tools.build:gradle:8.4.2"
-    }
+plugins {
+    id "com.android.library" version "8.4.2"
 }
-
-apply plugin: "com.android.library"
 
 def propOr = { key, fallback ->
     return rootProject.hasProperty(key) ? rootProject.property(key) : fallback
