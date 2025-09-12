@@ -1,12 +1,5 @@
 package android
 
-plugins {
-    id 'com.android.library'
-}
-
-group 'io.flutterfastkit.fk_user_agent'
-version '2.2.0'
-
 buildscript {
     repositories {
         google()
@@ -17,6 +10,13 @@ buildscript {
         classpath 'com.android.tools.build:gradle:8.7.0'
     }
 }
+
+plugins {
+    id 'com.android.library'
+}
+
+group 'io.flutterfastkit.fk_user_agent'
+version '2.2.0'
 
 rootProject.allprojects {
     repositories {
@@ -37,3 +37,4 @@ android {
         disable 'InvalidPackage'
     }
 }
+
