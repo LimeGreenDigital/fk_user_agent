@@ -1,35 +1,37 @@
+plugins {
+    id 'com.android.library'
+}
+
 group 'io.flutterfastkit.fk_user_agent'
-version '2.1.0'
+version '2.2.0'
 
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.4'
+        classpath 'com.android.tools.build:gradle:8.7.0'
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
-apply plugin: 'com.android.library'
-
 android {
     namespace 'io.flutterfastkit.fk_user_agent'
-    compileSdkVersion 30
+    compileSdk 35
 
     defaultConfig {
-        minSdkVersion 16
+        minSdk flutter.minSdkVersion
     }
 
-    lintOptions {
+    lint {
         disable 'InvalidPackage'
     }
 }
