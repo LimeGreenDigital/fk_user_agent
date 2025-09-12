@@ -1,40 +1,51 @@
-package android
+group = "io.flutterfastkit.fk_user_agent"
+version = "2.1.2"
 
 buildscript {
     repositories {
         google()
         mavenCentral()
     }
-
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.7.0'
+        classpath "com.android.tools.build:gradle:8.4.2"
     }
 }
 
-plugins {
-    id 'com.android.library'
+apply plugin: "com.android.library"
+
+def propOr = { key, fallback ->
+    return rootProject.hasProperty(key) ? rootProject.property(key) : fallback
 }
 
-group 'io.flutterfastkit.fk_user_agent'
-version '2.2.0'
-
-rootProject.allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+def compileSdk = propOr("flutter.compileSdkVersion", 35).toInteger()
+def minSdk = propOr("flutter.minSdkVersion", 21).toInteger()
+def targetSdk = propOr("flutter.targetSdkVersion", 35).toInteger()
 
 android {
-    namespace 'io.flutterfastkit.fk_user_agent'
-    compileSdk flutter.compileSdkVersion
+    namespace "io.flutterfastkit.fk_user_agent"
+    compileSdkVersion compileSdk
 
     defaultConfig {
-        minSdk flutter.minSdkVersion
+        minSdkVersion minSdk
+        targetSdkVersion targetSdk
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     lint {
-        disable 'InvalidPackage'
+        abortOnError false
     }
 }
 
+repositories {
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    // (Add only needed dependencies; keep empty if none)
+}
